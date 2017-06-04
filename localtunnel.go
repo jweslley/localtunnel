@@ -1,4 +1,25 @@
 // Package localtunnel implements a client library for https://localtunnel.me
+//
+// localtunnel allows you to expose your localhost to the world for easy testing and sharing!
+//
+// Exposing a local port:
+//
+//    import "github.com/jweslley/localtunnel"
+//
+//    ...
+//
+//    var port := 8000
+//    var tunnel := localtunnel.NewLocalTunnel(port)
+//    var err := tunnel.Open()
+//    if (err != nil) {
+//    	fmt.Printf("your url is: %s\n", tunnel.URL())
+//    }
+//
+//    ...
+//
+//    tunnel.Close()
+//
+//
 package localtunnel
 
 import (
@@ -43,6 +64,7 @@ func NewTunnel(host string, port int) *Tunnel {
 	return DefaultClient.NewTunnel(host, port)
 }
 
+// Tunnel forwards remote requests to another server, typically to a port on localhost.
 type Tunnel struct {
 	c       *Client
 	m       sync.Mutex
@@ -62,13 +84,19 @@ func (t *Tunnel) RemotePort() int    { return t.remotePort }
 func (t *Tunnel) LocalHost() string  { return t.localHost }
 func (t *Tunnel) LocalPort() int     { return t.localPort }
 func (t *Tunnel) Subdomain() string  { return t.subdomain }
-func (t *Tunnel) URL() string        { return t.url }
-func (t *Tunnel) MaxConn() int       { return t.maxConn }
 
+// URL at which the localtunnel is exposed.
+func (t *Tunnel) URL() string { return t.url }
+
+// MaxConn is the maximum number of connections allowed.
+func (t *Tunnel) MaxConn() int { return t.maxConn }
+
+// Open setup the tunnel creating connections between the remote and local servers.
 func (t *Tunnel) Open() error {
 	return t.OpenAs("?new")
 }
 
+// Open setup the tunnel creating connections between the remote and local servers with a custom subdomain.
 func (t *Tunnel) OpenAs(subdomain string) error {
 	t.m.Lock()
 	defer t.m.Unlock()
@@ -83,6 +111,7 @@ func (t *Tunnel) OpenAs(subdomain string) error {
 	return nil
 }
 
+// Close closes all tunnel's connections.
 func (t *Tunnel) Close() {
 	t.m.Lock()
 	defer t.m.Unlock()
@@ -95,6 +124,7 @@ func (t *Tunnel) Close() {
 	close(t.closeCh)
 }
 
+// Closing is a channel which is closed when the tunnel is closed.
 func (t *Tunnel) Closing() <-chan struct{} {
 	return t.closeCh
 }

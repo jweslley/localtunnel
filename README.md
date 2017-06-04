@@ -50,7 +50,7 @@ Output:
 To finish the tunnel just interrupt the program (`Ctrl-C`).
 
 
-## API [GoDoc][]
+## API - [GoDoc][]
 
 The localtunnel client is also usable through an API (for test integration, automation, etc).
 
@@ -94,7 +94,7 @@ if (err != nil) {
 tunnel.Close()
 ```
 
-For more information, check the [documentation][GoDoc].
+For more information, check out the [documentation][GoDoc].
 
 
 ## Bugs and Feedback
