@@ -1,3 +1,4 @@
+// Package localtunnel implements a client library for https://localtunnel.me
 package localtunnel
 
 import (
