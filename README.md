@@ -27,7 +27,7 @@ Assuming your local server is running on port 8000, just use the `lt` command to
 
 Thats it! A tunnel will be created and the command output will be something like:
 
-    your url is: https://dlaaazhqwd.localtunnel.me
+    your url is: https://dlaaazhqwd.loca.lt
 
 This URL can be used and shared to access your local service from anywhere in the world!
 
@@ -42,7 +42,7 @@ You also can access your service with a custom subdomain. To this, you need the 
 
 Output:
 
-    your url is: https://ltdemo.localtunnel.me
+    your url is: https://ltdemo.loca.lt
 
 
 ### Finishing the tunnel

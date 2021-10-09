@@ -12,7 +12,7 @@ import (
 	"testing"
 )
 
-var ltRegexp = regexp.MustCompile("^https:\\/\\/.*\\.localtunnel.me$")
+var ltRegexp = regexp.MustCompile("^https:\\/\\/.*\\.loca.lt$")
 
 func TestDefaultClient(t *testing.T) {
 	if DefaultClient == nil {

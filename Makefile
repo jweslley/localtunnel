@@ -5,7 +5,8 @@ LDFLAGS="-X main.programVersion=$(VERSION)"
 all: test
 
 build:
-	go build -o $(PROGRAM) ./cmd/...
+	go build -o bin/$(PROGRAM) ./cmd/...
+	mv bin/$(PROGRAM) $(GOPATH)/bin
 
 test:
 	go test -v ./...
@@ -29,4 +30,4 @@ dist:
 	done
 
 clean:
-	rm -rf *.tar.gz
+	rm -rf *.tar.gz bin/*
